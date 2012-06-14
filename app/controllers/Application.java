@@ -41,26 +41,39 @@ public class Application extends Controller {
 		//System.out.println("month :" + dt.monthOfYear().getAsText());
 		List<String> days = Lists.newArrayList();
 		List <String> day = Lists.newArrayList();
-		Table<Integer, Integer, String> my_month = TreeBasedTable.create();
+		Table<String, Integer, String> my_month = TreeBasedTable.create();
+		List<Table> listeMonths = Lists.newLinkedList();
 		int current_month = dt.getMonthOfYear();
 		int new_month = current_month;
+		int change_month = current_month;
 		int counter = 1;
 		System.out.println("current:"+current_month);
 		while (new_month >= current_month && new_month <= current_month + 6)
 		{
-			//System.out.println (dt.dayOfWeek().getAsText().substring(0,1).toUpperCase() + " "+ dt.dayOfMonth().getAsText());	
-			//days.add(dt.dayOfMonth().getAsText());
-			//day.add(dt.dayOfWeek().getAsText().substring(0,1).toUpperCase());
-			my_month.put(counter, 1 , dt.dayOfMonth().getAsText());
-			my_month.put(counter, 2 , dt.dayOfWeek().getAsText().substring(0,1).toUpperCase());
-			my_month.put(counter, 3 , dt.monthOfYear().getAsText());
+			if (change_month != new_month){
+				System.out.println("change month");
+				listeMonths.add(my_month);
+				for (final String key: my_month.rowKeySet()) {
+					  System.out.println("just filled: "+ my_month.row(key).get(2) + " "+ my_month.row(key).get(3));
+					}
+				my_month.clear();
+				change_month = new_month;
+			}
+			my_month.put(dt.dayOfMonth().getAsText(), 1 , dt.dayOfMonth().getAsText());
+			my_month.put(dt.dayOfMonth().getAsText(), 2 , dt.dayOfWeek().getAsText().substring(0,1).toUpperCase());
+			my_month.put(dt.dayOfMonth().getAsText(), 3 , dt.monthOfYear().getAsText());
 			dt.addDays(1);
 			new_month = dt.getMonthOfYear();
 			counter++;
 			System.out.println("current:"+new_month);
 		}
 		//final List<String> firstValues = Lists.newArrayList();
-//		
+		System.out.println(listeMonths.size());
+		for (Table<String, Integer, String> t : listeMonths) {
+			for (final String key: t.rowKeySet()) {
+				  System.out.println(key + "->" +t.row(key).get(2) + " "+ t.row(key).get(3));
+				}
+		}
 		render(my_month);
 
 }
