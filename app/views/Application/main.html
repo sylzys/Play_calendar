@@ -10,13 +10,26 @@
     </head>
     <body>
     	Welcome to my Calendar
-    	<hr />
-    	<table border="1" width="80%">
-    	#{list items : my_month.rowKeySet(), as : 'key'}
-		 <tr><td>${my_month.row(key).get(1)}</td><td>${my_month.row(key).get(2)}</td>
-		 <td width="10%"></td></tr>
+    	<hr /><div id = "content">
+    	<div class="month">
+    	<table border="1" width="100%">
+    	#{list items: listeMonths, as : 't'}
+	    	#{list items : t.rowKeySet(), as : 'key'} 
+		    	#{if t.row(key).get(1) == "01"}
+			    	</table></div><div class="month"><table border="1" width="100%">
+			    	<tr><td colspan="3" style="text-align:center;font-weight:bold;">${t.row(key).get(3)}</td></tr>
+		    	#{/if}
+		    	<tr 
+		    	#{if t.row(key).get(2) == "S" || t.row(key).get(2) == "D"}
+		    		class="week_end"
+		    	#{/if}
+	    		><td>${t.row(key).get(1)}</td><td>${t.row(key).get(2)}</td>
+				<td width="73%"></td>
+				</tr>
+			#{/list}
 		#{/list}
-		</table>
+		</table></div>
+		</div>
         #{doLayout /} 
     </body>
 </html>

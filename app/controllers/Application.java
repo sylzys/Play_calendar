@@ -42,7 +42,7 @@ public class Application extends Controller {
 		List<String> days = Lists.newArrayList();
 		List <String> day = Lists.newArrayList();
 		Table<String, Integer, String> my_month = TreeBasedTable.create();
-		List<Table> listeMonths = Lists.newLinkedList();
+		List<Table<String, Integer, String>> listeMonths = Lists.newArrayList();
 		int current_month = dt.getMonthOfYear();
 		int new_month = current_month;
 		int change_month = current_month;
@@ -52,29 +52,33 @@ public class Application extends Controller {
 		{
 			if (change_month != new_month){
 				System.out.println("change month");
-				listeMonths.add(my_month);
+				
 				for (final String key: my_month.rowKeySet()) {
 					  System.out.println("just filled: "+ my_month.row(key).get(2) + " "+ my_month.row(key).get(3));
 					}
-				my_month.clear();
+				listeMonths.add(my_month);
+//				my_month.clear();
 				change_month = new_month;
 			}
-			my_month.put(dt.dayOfMonth().getAsText(), 1 , dt.dayOfMonth().getAsText());
+			my_month.put(dt.dayOfMonth().getAsText(), 1 , (dt.dayOfMonth().getAsText().length() < 2) ? "0"+dt.dayOfMonth().getAsText() : dt.dayOfMonth().getAsText());
 			my_month.put(dt.dayOfMonth().getAsText(), 2 , dt.dayOfWeek().getAsText().substring(0,1).toUpperCase());
-			my_month.put(dt.dayOfMonth().getAsText(), 3 , dt.monthOfYear().getAsText());
+			my_month.put(dt.dayOfMonth().getAsText(), 3 , (dt.monthOfYear().getAsText().length() < 2) ? "0"+dt.monthOfYear().getAsText() : dt.monthOfYear().getAsText());
+			//System.out.println("day of month:");
+			//System.out.println((dt.dayOfMonth().getAsText().length() < 2) ? "0"+dt.dayOfMonth().getAsText() : dt.dayOfMonth().getAsText());
 			dt.addDays(1);
 			new_month = dt.getMonthOfYear();
 			counter++;
 			System.out.println("current:"+new_month);
 		}
+		//listeMonths.add(my_month);
 		//final List<String> firstValues = Lists.newArrayList();
-		System.out.println(listeMonths.size());
-		for (Table<String, Integer, String> t : listeMonths) {
-			for (final String key: t.rowKeySet()) {
-				  System.out.println(key + "->" +t.row(key).get(2) + " "+ t.row(key).get(3));
-				}
-		}
-		render(my_month);
+		System.out.println("NUMBER OF LISTS : "+listeMonths.size());
+//		for (Table<String, Integer, String> t : listeMonths) {
+//			for (String key: t.rowKeySet()) {
+//				  System.out.println(key + "->" +t.row(key).get(2) + " "+ t.row(key).get(3));
+//				}
+//		}
+		render(listeMonths);
 
 }
 

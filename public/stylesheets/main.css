@@ -1,0 +1,14 @@
+#content {
+	width:95%;
+	border: 1px solid;
+	margin:0 auto;
+}
+
+.month {
+	width:16,66666667%;
+	display:inline-block;
+}
+
+.week_end {
+	background:#c9fbcf;
+}
