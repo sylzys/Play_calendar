@@ -16,21 +16,30 @@
              <script src="@{'/public/javascripts/jquery-ui-1.8.21.custom.min.js'}" type="text/javascript" charset="utf-8"></script>
     </head>
     <body>
+    for (String i : tmp_map.keySet()){
+//			System.out.println(i + "::" +tmp_map.get(i));
+
+t.row(key).get(1)
+
     	Welcome to my Calendar
     	<hr /><div id = "content">
-    	
     	#{list items: listeMonths, as : 't'}
 	    	#{list items : t.rowKeySet(), as : 'key'} 
-		    	#{if t.row(key).get(1) == "01"}
+		    	#{if key.split('/')[0] == "1"}
 			    	</table></div><div class="month"><table border="1" width="100%">
-			    	<tr><td colspan="3" font-weight:bold;">${t.row(key).get(3)}</td></tr>
+			    	<tr><td colspan="3" font-weight:bold;">${key.split('/')[2].capFirst()} ${key.split('/')[3]}</td></tr>
 		    	#{/if}
 		    	<tr 
-		    	#{if t.row(key).get(2) == "S" || t.row(key).get(2) == "D"}
+		    	#{if key.split('/')[1] == "S" || key.split('/')[1] == "D"}
 		    		class="week_end"
 		    	#{/if}
-	    		><td>${t.row(key).get(1)}</td><td>${t.row(key).get(2)}</td>
-				<td  class="day" id="${t.row(key).get(1)}/${t.row(key).get(3)}" width="50%"></td>
+	    		><td>${key.split('/')[0]}</td><td>${key.split('/')[1]}</td>
+				<td  class="day" id="${key.split('/')[0]}/${key.split('/')[2]}" width="50%">
+				#{list items: t.row(key).get(1).keySet(), as: 'rdv'}
+				${rdv.split('/')[1]}
+				#{/list}
+				
+				</td>
 				</tr>
 			#{/list}
 		#{/list}
