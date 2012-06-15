@@ -91,12 +91,13 @@ public class Application extends Controller {
 				render(calendars);
 	}
 	
-	public static void add_appointement(@As("yyyy-MM-dd") Date date, String description, String type){
+	public static void add_appointement(@As("MM-dd-yyyy") Date date, String description, String type, String hour, String min){
 		Calendar_ cal = new Calendar_();
 		cal.date = date;
 		cal.description = description;
 		cal.type = type;
+		cal.heure=hour+':'+min;
 		cal.save();
-		renderJSON(description);
+		renderText(description);
 	}
 }

@@ -1,44 +1,51 @@
 #content {
-	width:95%;
-	
-	margin:0 auto;
+	width: 95%;
+	margin: 0 auto;
 }
 
 .month {
-	width:16.66666667%;
-	float:left;
+	width: 16.66666667%;
+	float: left;
 }
 
 .week_end {
-	background:#c9fbcf;
+	background: #c9fbcf;
 }
 
 table {
-	border-collapse:collapse;
-	padding:3px;
+	border-collapse: collapse;
+	padding: 3px;
 }
 
 td {
 	padding: 5px;
-	text-align:center;
+	text-align: center;
+	font-size:0.8em;
 }
-#wrapper {
-	width:450px;
-	overflow:hidden;
-	border: 2px solid red;
-}
-#content {
-	width:900px;
-	border: 1px solid blue;
-}
+
 #my_rdv {
-	width:50%;
-	float:left;
-	border:1px solid;
-	-webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
+	position: relative;
+/* 	top: 10; */
+/* 	left: 10; */
 }
+
 #new_rdv {
-	
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: none;
+}
+
+ul.rdv li {
+	list-style:none;
+}
+
+ul.rdv img {
+	margin-right:5px;
+}
+
+input.add_rdv {
+	position:absolute;
+	top:0px;
+	right:50px;
 }
