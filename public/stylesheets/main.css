@@ -1,14 +1,44 @@
 #content {
 	width:95%;
-	border: 1px solid;
+	
 	margin:0 auto;
 }
 
 .month {
-	width:16,66666667%;
-	display:inline-block;
+	width:16.66666667%;
+	float:left;
 }
 
 .week_end {
 	background:#c9fbcf;
+}
+
+table {
+	border-collapse:collapse;
+	padding:3px;
+}
+
+td {
+	padding: 5px;
+	text-align:center;
+}
+#wrapper {
+	width:450px;
+	overflow:hidden;
+	border: 2px solid red;
+}
+#content {
+	width:900px;
+	border: 1px solid blue;
+}
+#my_rdv {
+	width:50%;
+	float:left;
+	border:1px solid;
+	-webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+#new_rdv {
+	
 }

@@ -4,7 +4,9 @@
 
 # Home page
 GET     /                                       Application.index
-
+GET     /get_appointement/{date}                   Application.get_appointement
+GET     /add_appointement/{date}&{description}&{type}       Application.add_appointement
+#entre {}, correspond aux params de la methode appellee
 # Ignore favicon requests
 GET     /favicon.ico                            404
 
